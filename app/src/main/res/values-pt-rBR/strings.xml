@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Meu App</string>
     <string name="hello">Olá mundo</string>
+    <string name="click">Clique aqui</string>
+    <string name="clicked">Já clicou</string>
 </resources>

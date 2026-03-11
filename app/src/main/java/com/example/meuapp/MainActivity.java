@@ -2,6 +2,7 @@ package com.example.meuapp;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +10,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
     Button b;
+    TextView tv;
+    int cont=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +24,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getString(R.string.app_name);
         b=findViewById(R.id.button);
+        tv = findViewById(R.id.tv);
         b.setOnClickListener(v -> {
-            b.setText("já clicou");
+            cont++;
+            Random ramdom = new Random();
+            int r = ramdom.nextInt();
+            tv.setText(Integer.toString(r));
         });
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 //            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
