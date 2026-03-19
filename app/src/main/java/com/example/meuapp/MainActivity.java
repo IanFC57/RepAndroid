@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tv;
     int cont=0;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
         b=findViewById(R.id.button);
         tv = findViewById(R.id.tv);
         b.setOnClickListener(v -> {
-            cont++;
+            cont=1/2;
             Random ramdom = new Random();
+//            int r = ramdom.nextInt(100); ou
             int r = ramdom.nextInt();
             tv.setText(Integer.toString(r));
+            b.setText("@string/clicked");
         });
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 //            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
