@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
             cont=1/2;
             Random ramdom = new Random();
 //            int r = ramdom.nextInt(100); ou
-            int r = ramdom.nextInt();
+            int r = ramdom.nextInt(100);
             tv.setText(Integer.toString(r));
-            b.setText("@string/clicked");
+            b.setText("Já clicou");
         });
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 //            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
