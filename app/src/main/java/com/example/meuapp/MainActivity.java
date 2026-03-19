@@ -2,6 +2,7 @@ package com.example.meuapp;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -15,7 +16,8 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     Button b;
     TextView tv;
-    int cont=0;
+    EditText edMin, edMax;
+
 
 
 
@@ -25,24 +27,37 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         getString(R.string.app_name);
+
+        edMin=findViewById(R.id.edMin);
+        edMax=findViewById(R.id.edMax);
         b=findViewById(R.id.button);
         tv = findViewById(R.id.tv);
+
         b.setOnClickListener(v -> {
-            cont=1/2;
+            String minStr=edMin.getText().toString();
+            String maxStr=edMax.getText().toString();
+            if (minStr.isEmpty()){
+                edMin.setError("Informe o valor minímo");
+                return;
+            }
+            if (maxStr.isEmpty()){
+                edMax.setError("Informe ovalor máximo");
+                return;
+            }
+
+
+            int min = Integer.parseInt(minStr);
+            int max = Integer.parseInt(maxStr);
+
+
+
             Random ramdom = new Random();
 //            int r = ramdom.nextInt(100); ou
-            int r = ramdom.nextInt(100);
+            int r = ramdom.nextInt(min, max);
+
             tv.setText(Integer.toString(r));
             b.setText("Já clicou");
         });
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
-
-//        b.setText("asdf");
-//        setContentView(b);
 
     }
 }
