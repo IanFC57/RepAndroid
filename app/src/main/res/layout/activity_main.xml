@@ -7,39 +7,51 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnVoltar"
+    <EditText
+        android:id="@+id/Peso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Voltar"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Peso"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnAvancar"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.173"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/Calculo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        app:layout_constraintStart_toEndOf="@+id/IMC"
+        tools:layout_editor_absoluteY="215dp" />
+
+    <TextView
+        android:id="@+id/IMC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="51dp"
+        android:text="IMC:"
+        app:layout_constraintTop_toBottomOf="@+id/Peso"
+        tools:layout_editor_absoluteX="153dp" />
+
+    <EditText
+        android:id="@+id/Altura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Altura"
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="119dp" />
 
     <Button
-        android:id="@+id/btnAvancar"
+        android:id="@+id/btnCalculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Avançar"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVoltar"
+        android:text="Calcule"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnVoltar"
-        app:layout_constraintTop_toTopOf="@+id/btnVoltar" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/btnVoltar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnVoltar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
+        tools:layout_editor_absoluteY="369dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

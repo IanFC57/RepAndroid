@@ -3,7 +3,6 @@ package com.example.meuapp;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,17 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnVoltar,btnAvancar;
-    ImageView imageView;
-    Integer imagens[] = new Integer[]{
-            R.drawable.cachorro,
-            R.drawable.gardem,
-            R.drawable.happy,
-            R.drawable.patinho,
-            R.drawable.porquinho
-    };
-    int posicao=0;
+    Button b;
+    EditText edAlt;
+    EditText edPes;
+    TextView Calculo;
 
+    double IMC;
 
 
 
@@ -34,33 +28,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getString(R.string.app_name);
 
+        edAlt = findViewById(R.id.Altura);
+        edPes = findViewById(R.id.Peso);
+        b = findViewById(R.id.btnCalculo);
+        Calculo = findViewById(R.id.Calculo);
 
-        btnAvancar=findViewById(R.id.btnAvancar);
-        btnVoltar=findViewById(R.id.btnVoltar);
-        imageView=findViewById(R.id.imageView);
+        b.setOnClickListener(v -> );
 
-        imageView.setImageResource(imagens[posicao=0]);
-
-        btnAvancar.setOnClickListener(v -> {
-            imageView.setImageResource(imagens[posicao]);
-            posicao++;
-            if (posicao >= imagens.length){
-                posicao = 0;
-            }
-
-        });
-        btnVoltar.setOnClickListener(v -> {
-            posicao--;
-            if (posicao < 0){
-                posicao=imagens.length-1;
-            }
-            imageView.setImageResource(imagens[posicao]);
-
-        });
-
-
-
-
-
-
-}}
+    }
+}
