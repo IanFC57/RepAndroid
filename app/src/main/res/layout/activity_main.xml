@@ -28,18 +28,18 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/editAltura"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.82"
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
         android:id="@+id/editAltura"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="568dp"
+        android:layout_marginBottom="452dp"
         android:hint="Altura (m)"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="-16dp" />
 
     <Button
         android:id="@+id/btnCalcular"
@@ -49,57 +49,8 @@
         android:text="Calcular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editAltura"
-        app:layout_constraintVertical_bias="0.017"
-        tools:layout_editor_absoluteX="-16dp" />
-
-    <TextView
-        android:id="@+id/textResultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="380dp"
-        android:text="Seu IMC: "
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.221"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textClassificacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="Classificação: "
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageClassificacao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvResultado"
-        android:layout_width="75dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="380dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
-        app:layout_constraintStart_toEndOf="@+id/textResultado" />
-
-    <ImageView
-        android:id="@+id/imageClassificacao"
-        android:layout_width="378dp"
-        android:layout_height="286dp"
-        android:layout_marginBottom="4dp"
-        android:contentDescription="Imagem de classificação do IMC"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/perfil"
-        tools:srcCompat="@drawable/perfil" />
+        app:layout_constraintVertical_bias="0.516"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
