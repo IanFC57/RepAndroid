@@ -24,10 +24,9 @@ public class MainActivity extends AppCompatActivity {
         getString(R.string.app_name);
         lv = findViewById(R.id.ListView);
        AdapterPlaneta adaptador = new AdapterPlaneta(
-               this,
-               // XML_Com_Texto_e_imagens,
-               plcon.ListaPlanetas(),
-       )
+               this,R.layout.item,
+               plcon.ListaPlanetas()
+       );
 
 
         lv.setAdapter(adaptador);
