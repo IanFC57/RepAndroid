@@ -37,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
             double altura=Double.parseDouble(editAltura.getText().toString());
             calculo= peso / (altura*altura);
 
-            Intent i = new Intent(getApplicationContext(),MainActivity2.class);
-            String msg= Double.toString(calculo);
-            i.putExtra("Calculo",msg);
+            Intent i = new Intent(MainActivity.this, MainActivity2.class);
+            Bundle bundle = new Bundle();
+            bundle.putDouble("VALOR_IMC", calculo);
+            i.putExtras(bundle);;
             startActivity(i);
 
 
