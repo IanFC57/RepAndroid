@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editAltura, editPeso;
     Button btnCalcular;
-    TextView tvResultado;
+    TextView tvResultado, textClassificacao;
     ImageView imageClassificacao;
     double calculo;
 
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         editAltura=findViewById(R.id.editAltura);
         tvResultado=findViewById(R.id.tvResultado);
         imageClassificacao=findViewById(R.id.imageClassificacao);
+        textClassificacao = findViewById(R.id.textClassificacao);
         btnCalcular=findViewById(R.id.btnCalcular);
 
         btnCalcular.setOnClickListener(v -> {
@@ -40,9 +41,25 @@ public class MainActivity extends AppCompatActivity {
             calculo= peso / (altura*altura);
 
             tvResultado.setText(String.format("Seu IMC é %.2f", calculo));
-//            if (tvResultado < 18.5){
-//                imageClassificacao.setImageResource();
-//            }
+            if (calculo < 18.5) {
+                textClassificacao.setText("Classificação: Abaixo do peso");
+                imageClassificacao.setImageResource(R.drawable.abaixopeso);
+            } else if (calculo >= 18.5 && calculo <= 24.9) {
+                textClassificacao.setText("Classificação: Peso normal");
+                imageClassificacao.setImageResource(R.drawable.normal);
+            } else if (calculo >= 25 && calculo <= 29.9) {
+                textClassificacao.setText("Classificação: Sobrepeso");
+                imageClassificacao.setImageResource(R.drawable.sobrepeso);
+            } else if (calculo >= 30 && calculo <= 34.9) {
+                textClassificacao.setText("Classificação: Obesidade grau 1");
+                imageClassificacao.setImageResource(R.drawable.obesidade1);
+            } else if (calculo >= 35 && calculo <= 39.9) {
+                textClassificacao.setText("Classificação: Obesidade grau 2");
+                imageClassificacao.setImageResource(R.drawable.obesidade2);
+            } else {
+                textClassificacao.setText("Classificação: Obesidade grau 3");
+                imageClassificacao.setImageResource(R.drawable.obesidade3);
+            }
 
         });
 
