@@ -1,71 +1,83 @@
 package com.example.meuapp;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ListView listView;
+    SQLiteDatabase db;
+    ImageButton buttonSalvar;
     EditText editText;
-    ImageButton imageButton;
-
-    SQLiteDatabase sqLiteDatabase;
-
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        getString(R.string.app_name);
-        sqLiteDatabase = openOrCreateDatabase("notas", MODE_PRIVATE, null);
-        imageButton = findViewById(R.id.imageButton);
-
-        imageButton.setOnClickListener(v -> {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("titulo","João");
-            contentValues.put("nota","777");
-            sqLiteDatabase.insert("notas", null, contentValues);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
         });
+        buttonSalvar = findViewById(R.id.imageButton);
+        editText=findViewById(R.id.editTextText);
+        //tratamento click botão salvar.
+        buttonSalvar.setOnClickListener(v -> {
+            ContentValues cv = new ContentValues();
+            cv.put("titulo",editText.getText().toString() );
+            cv.put("nota",editText.getText().toString());
+            db.insert("notas",null,cv);
+            listagem();
 
-        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS notas (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo TEXT, nota TEXT)");
-        // nunca fazer: String titulo=João;
-        //sqLiteDatabase.execSQL("INSERT INTO notas VALUES (1,''+titulo+ '','')");
+        });
+        // inicializar o banco de dados ou abrir caso o mesmo não exista
+        db=openOrCreateDatabase("notas",MODE_PRIVATE,null );
+        db.execSQL("CREATE TABLE IF NOT EXISTS notas (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo TXT,nota TEXT ) ");
+        //inserirndo dados no banco de dados
+//        ContentValues cv = new ContentValues();
+//        cv.put("titulo","João");
+//        cv.put("nota","João");
+//        db.insert("notas",null,cv);
 
+        //Recuperando dados no banco de da
+        listagem();
+    }
+    public  void listagem(){
+        Cursor  cursor = db.rawQuery("SELECT * FROM notas", null);
+        cursor.moveToNext();
 
-
-        //RECUPERAR DADOS
-        Cursor c = sqLiteDatabase.rawQuery("SELECT id,id*10,titulo,nota FROM notas", null);
-        c.moveToFirst();
-        ArrayList<Nota> listaNotas = new ArrayList<>();
-        while (!c.isAfterLast()){
-            @SuppressLint("Range") int id =c.getInt(c.getColumnIndex("id"));
-            @SuppressLint("Range") String titulo=c.getString(c.getColumnIndex("titulo"));
-            @SuppressLint("Range") String nota=c.getString(c.getColumnIndex("notas"));
-            Nota n = new Nota(id, titulo, nota);
+        ArrayList<Nota> listaNotas=new ArrayList<>();
+        while (!cursor.isAfterLast()){
+            int id=cursor.getInt(cursor.getColumnIndex("id"));
+            String titulo=cursor.getString(cursor.getColumnIndex("titulo"));
+            String nota=cursor.getString(cursor.getColumnIndex("nota"));
+            Nota n = new Nota(id,titulo,nota);
             listaNotas.add(n);
-            Log.d("SELECT", Integer.toString(id)+","+titulo+","+nota);
-            c.moveToNext();
+            cursor.moveToNext();
+        }
+        ArrayList<String> listaTituloNotas=new ArrayList<>();
+        for (Nota nota: listaNotas) {
+            listaTituloNotas.add(nota.titulo);
         }
 
-        listView = findViewById(R.id.ListView);
-        ArrayList<String> listaTitulos = new ArrayList<>();
-        for (Nota nota: listaNotas){
-            listaTitulos.add(nota.titulo);
-        }
+        //Exibindo no listview
+        adapter =new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,android.R.id.text1,listaTituloNotas);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,android.R.id.text1,listaTitulos);
-        listView.setAdapter(adapter);
+        ListView lv = findViewById(R.id.listview);
+        lv.setAdapter(adapter);
     }
 }
