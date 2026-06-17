@@ -1,6 +1,5 @@
 package com.example.meuapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,30 +13,35 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    TextView tvResultado, textClassificacao;
-    ImageView imageClassificacao;
-    Button btnVoltar;
+    private TextView tvResultado, textClassificacao;
+    private ImageView imageClassificacao;
+    private Button btnVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+
         tvResultado = findViewById(R.id.TVResultado2);
+        textClassificacao = findViewById(R.id.textClassificacao);
         imageClassificacao = findViewById(R.id.imageView);
-
-
+        btnVoltar = findViewById(R.id.btnVoltar);
         Bundle bundle = getIntent().getExtras();
-
 
         if (bundle != null) {
             double imc = bundle.getDouble("VALOR_IMC", 0.0);
+
+
+            tvResultado.setText(String.format("%.2f", imc));
+
 
             if (imc < 18.5) {
                 textClassificacao.setText("Classificação: Abaixo do peso");
@@ -59,5 +63,10 @@ public class MainActivity2 extends AppCompatActivity {
                 imageClassificacao.setImageResource(R.drawable.obesidade3);
             }
         }
+
+
+        btnVoltar.setOnClickListener(v -> {
+            finish();
+        });
     }
 }
